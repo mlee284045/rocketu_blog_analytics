@@ -1,0 +1,30 @@
+{% extends 'base_analytics.html' %}
+
+{% block main %}
+    <div class="row">
+        {% for page in pages %}
+            <div>
+                <h4>{{ page.url }} <span class="badge">{{ page.views.count }}</span></h4>
+        {% endfor %}
+            </div>
+    </div>
+    <hr>
+    <div class="row">
+        {% for location in locations %}
+            <div>
+                <h4>{{ location.city }} <span class="badge">{{ location.views.count }}</span></h4>
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="row">
+        {% regroup views by location as view_locations %}
+        {% for view_location in view_locations %}
+            <div>
+                <h4>
+                    {{ view_location.grouper }} <span class="badge">{{ view_location.list|length }}</span>
+                </h4>
+            </div>
+            {% endfor %}
+    </div>
+{% endblock main %}

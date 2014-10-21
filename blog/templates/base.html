@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -28,20 +29,66 @@
                 </div>
 
                 <div class="col-md-2">
-                    <div>Blog tags go here!</div>
+                    {% for tag in tags %}
+                        <div>
+                            <a href="{% url 'blog_tag' tag %}">
+                                <span class="label label-info">{{ tag.name }}</span>
+                            </a> <span class="badge">{{ tag.posts.count }}</span>
+                        </div>
+                    {% endfor %}
+                    <hr>
+                    {% for author in authors %}
+                        <div>
+                            <a href="{% url 'blog_author' author.pk %}">
+                                <span class="label label-primary">{{ author.name }}</span>
+                            </a> <span class="badge">{{ author.posts.count }}</span>
+                        </div>
+                    {% endfor %}
+                    <hr>
+                    {% regroup posts by created.year as post_year %}
+                    {% for year in post_year %}
+                        <h4>{{ year.grouper }}</h4>
+                        {% regroup year.list|dictsort:"created" by created.month as post_month %}
+                        {% for month in post_month %}
+                            <div>
+                                <span class="label label-success">{{ month.grouper }}</span>
+                                <span class="badge">{{ month.list|length }}</span>
+                            </div>
+                        {% endfor %}
+{#                        <div>#}
+{#                            <a href="{% url 'blog_date' date %}">#}
+{##}
+{#                                <span class="label label-primary">{{ author.name }}</span>#}
+{#                            </a> <span class="badge">{{ author.posts.count }}</span>#}
+{#                        </div>#}
+                    {% endfor %}
                 </div>
             </div>
 
             <hr>
 
             <div class="row">
-                <div class="col-md-12">Latest blog post goes here!</div>
+                <div class="col-md-6 well">
+                    <h3>Check out our latest post!</h3>
+                    <h4>{{ latest_post.title }}</h4>
+                    <div>by {{ latest_post.author }} on {{ latest_post.created }}</div>
+                    <a href="{% url 'post' latest_post.pk %}">Read it!</a>
+                </div>
             </div>
 
             <hr>
 
+            <div class="row">
+
+            </div>
             <div class="footer">
-                <p>&copy; My Blog 2014</p>
+                <div class="row">
+                    <div class="pull-right">Welcome user from {{ location.city }}!</div>
+                    <div class="col-sm-8 col-sm-offset-4">
+                        <a href="{{ ad.link }}">{{ ad.title }}{{ ad.image.url }}<img class='img-responsive' src="/Users/michaellee/projects/rocketu_blog_analytics/static/media/ads/wheat3.jpg" height="100px" ></a>
+                    </div>
+                    <div class="col-sm-2"><p>&copy; My Blog 2014</p></div>
+                </div>
             </div>
         </div>
     </body>
