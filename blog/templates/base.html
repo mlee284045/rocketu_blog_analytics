@@ -50,7 +50,7 @@ mixpanel.init("6ce48ceec500f3f4683b022ed3ab0952");</script>
                 <div class="col-md-2">
                     {% for tag in tags %}
                         <div>
-                            <a href="{% url 'blog_tag' tag %}">
+                            <a class="sidebarTag" data-name="{{ tag.name }}" href="{% url 'blog_tag' tag %}">
                                 <span class="label label-info">{{ tag.name }}</span>
                             </a> <span class="badge">{{ tag.posts.count }}</span>
                         </div>
