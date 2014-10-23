@@ -12,9 +12,3 @@ def dashboard(request):
     }
 
     return render(request, 'dashboard.html', data)
-
-def error(request):
-    my_variable = '!'
-    my_list = ['testing', 'a', 'list', 'out']
-    my_list = ["{}{}".format(list_item, my_variable) for list_item in my_list]
-    raise NotImplementedError("Woops! This doesn't exist.")
