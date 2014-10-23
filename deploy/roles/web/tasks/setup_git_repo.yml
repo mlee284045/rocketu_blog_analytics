@@ -1,0 +1,6 @@
+---
+
+- name: Ensure git repo is up to date
+  sudo_user: ubuntu
+  git: repo={{ git_repo }} dest={{ project_path }} accept_hostkey=yes
+  tags: git
