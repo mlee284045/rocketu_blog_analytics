@@ -16,3 +16,6 @@
 
 - name: Restart Supervisor
   supervisorctl: name=gunicorn_{{ project_name }} state=restarted config=/etc/supervisor/conf.d/{{ project_name }}.conf
+
+- name: Restart Supervisor Service
+  service: name=supervisor state=restarted sleep=1
