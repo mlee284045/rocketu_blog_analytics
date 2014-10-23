@@ -10,5 +10,4 @@ urlpatterns = patterns('',
     url(r'^blog/(\d+)/$', 'blog.views.post', name='post'),
     url(r'^blog/(?P<tag_name>\w+)/$', 'blog.views.blog_tag', name='blog_tag'),
     url(r'^blog/(?P<author_pk>\d+)/$', 'blog.views.blog_author', name='blog_author'),
-    url(r'^error/$', 'analytics.views.error', name='error')
 )
