@@ -6,3 +6,4 @@ db_user: "blog_analytics"
 db_password: AweSome
 nginx_server_name: ec2-54-191-113-180.us-west-2.compute.amazonaws.com
 django_settings_file: rocketu_blog_analytics.settings
+appenlight_key: 9d879ee8d53c412f995e04bf5d744838
