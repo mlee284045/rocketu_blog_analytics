@@ -3,11 +3,10 @@ $(document).ready(function() {
         mixpanel.track("Blog Footer Clicked");
     });
 
-    $('.sidebarTag').click(function(e) {
-        console.log(e.target.data('name'));
+    $('.sidebarTag').click(function() {
         mixpanel.track("Sidebar clicked", {
-            "name": e.target.data('name')
+            'name': 'hi'
         });
-    })
+    });
 
 });
